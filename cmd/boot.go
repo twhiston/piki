@@ -26,8 +26,8 @@ import (
 // bootCmd represents the boot command
 var bootCmd = &cobra.Command{
 	Use:   "boot",
-	Short: "A brief description of your command",
-	Long:  `Set if you want to boot to the app or rescue mode easily with this tool. Just pass in the type of boot you want`,
+	Short: "Switch the Pi boot between the app and recovery mode",
+	Long:  `Set if you want to boot to the app or recovery mode easily with this tool. Just pass in the --type of boot you want`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// read the whole file at once
 		cmdLineFile, err := cmd.PersistentFlags().GetString("file")

@@ -27,7 +27,5 @@ var dashCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(dashCmd)
-
-	dashCmd.PersistentFlags().String("dir", "/var/www/html/FullPageDashboard", "Directory of the dasboard")
-
+	dashCmd.PersistentFlags().String("dir", "/var/www/html/PikiOs", "Directory of the dasboard")
 }
