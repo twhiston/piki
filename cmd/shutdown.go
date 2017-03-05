@@ -24,6 +24,7 @@ import (
 var shutdownCmd = &cobra.Command{
 	Use:   "shutdown",
 	Short: "Shutdown the piki now",
+	Aliases: []string{"stop", "halt"},
 	Long: ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		helpers.RunScript("/bin/sh", "-c", "sudo /sbin/shutdown" )
