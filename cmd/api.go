@@ -27,7 +27,7 @@ import (
 // apiCmd represents the api command
 var apiCmd = &cobra.Command{
 	Use:   "api",
-	Short: "Interact with the defaut dashboard app api",
+	Short: "Interact with the default dashboard app api",
 	Long:  `Only works with the default app api, so if you use something else on your piki you should ignore this command`,
 }
 

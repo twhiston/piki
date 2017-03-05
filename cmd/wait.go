@@ -22,10 +22,10 @@ import (
 	"os"
 )
 
-// httpdCmd represents the httpd command
-var httpdCmd = &cobra.Command{
-	Use:   "httpd",
-	Short: "Turn on or off httpd checking when starting up OS",
+// waitCmd represents the wait command
+var waitCmd = &cobra.Command{
+	Use:   "wait",
+	Short: "Turn on or off wait for connection checking when starting up OS",
 	Long:  `Set flag --disabled to turn off the checking and always allow the browser to start`,
 	Run: func(cmd *cobra.Command, args []string) {
 		httpdFile, err := cmd.PersistentFlags().GetString("file")
@@ -56,7 +56,7 @@ var httpdCmd = &cobra.Command{
 
 
 func init() {
-	RootCmd.AddCommand(httpdCmd)
-	httpdCmd.PersistentFlags().String("file", "/boot/check_for_httpd", "Path (including filename) of the check_for_httpd file to alter")
-	httpdCmd.PersistentFlags().Bool("disabled", false, "set the disable flag to set the value to disabled")
+	serverCmd.AddCommand(waitCmd)
+	waitCmd.PersistentFlags().String("file", "/boot/check_for_httpd", "Path (including filename) of the check_for_httpd file to alter")
+	waitCmd.PersistentFlags().Bool("disabled", false, "set the disable flag to set the value to disabled")
 }

@@ -34,10 +34,6 @@ get a setting value, or all settings
 
 Set the hostname of this device (analogous to raspi-config set hostname)
 
-### httpd
-
-Turn on or off httpd checking when starting up the app. This is independent of the dashboard that you choose to run
-
 ### logs
 
 Look at some app logs easily
@@ -56,11 +52,17 @@ Reboot your pi
 
 ### server
 
-Start/Stop Restart the server
+#### ctrl
+
+Start/Stop/Restart the server
 
 #### edit
 
 edit the server config file with vi
+
+#### httpd
+
+Turn on or off httpd checking when starting up the app. This is independent of the dashboard that you choose to run
 
 ### shutdown
 

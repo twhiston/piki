@@ -25,26 +25,35 @@ import (
 // serverCmd represents the server command
 var serverCmd = &cobra.Command{
 	Use:   "server",
+	Short: "interact with the lighttpd server",
+}
+
+// serverCmd represents the server command
+var ctrlServerCmd = &cobra.Command{
+	Use:   "ctrl",
 	Short: "stop start or restart the server",
-	Long:  `simple alias for /etc/init.d/lighttp`,
+	Long:  `simple alias for /etc/init.d/lighttp.
+Arguments could be
+	start
+	stop
+	restart`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		stop, _ := cmd.PersistentFlags().GetBool("stop")
-		start, _ := cmd.PersistentFlags().GetBool("start")
-		restart, _ := cmd.PersistentFlags().GetBool("restart")
-
-		if !stop && !start && !restart {
-			fmt.Println("You must specify a --stop --start or --restart flag")
+		if(len(args) == 0){
+			fmt.Println("argument must be start / stop / restart")
+			return
 		}
 
-		if stop {
+		command := args[0]
+
+		if (command == "stop") {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd stop"))
-		}
-		if start {
+		} else if (command == "start") {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd start"))
-		}
-		if restart {
+		} else if (command == "restart") {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd restart"))
+		} else {
+			fmt.Println("argument must be start / stop / restart")
 		}
 
 	},
@@ -70,10 +79,7 @@ var editServerCmd = &cobra.Command{
 func init() {
 	RootCmd.AddCommand(serverCmd)
 	serverCmd.AddCommand(editServerCmd)
-
-	serverCmd.PersistentFlags().Bool("restart", false, "A help for foo")
-	serverCmd.PersistentFlags().Bool("start", false, "A help for foo")
-	serverCmd.PersistentFlags().Bool("stop", false, "A help for foo")
+	serverCmd.AddCommand(ctrlServerCmd)
 
 	editServerCmd.PersistentFlags().String("conf", "/etc/lighttpd/lighttpd.conf", "Path and filename of lighttpd conf file")
 	editServerCmd.PersistentFlags().String("editor", "vi", "Name of editor to use")
