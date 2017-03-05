@@ -23,6 +23,7 @@ import (
 var rebootCmd = &cobra.Command{
 	Use:   "reboot restart",
 	Short: "A brief description of your command",
+	Aliases: []string{"restart"},
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
