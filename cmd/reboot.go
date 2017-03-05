@@ -17,7 +17,6 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"github.com/twhiston/piki/helpers"
-	"syscall"
 )
 
 // rebootCmd represents the reboot command
