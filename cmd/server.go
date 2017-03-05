@@ -38,13 +38,13 @@ var serverCmd = &cobra.Command{
 		}
 
 		if stop {
-			fmt.Print(helpers.RunScript("/bin/sh", "-c", "/etc/init.d/lighttpd", "stop"))
+			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd stop"))
 		}
 		if start {
-			fmt.Print(helpers.RunScript("/bin/sh", "-c", "/etc/init.d/lighttpd", "start"))
+			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd start"))
 		}
 		if restart {
-			fmt.Print(helpers.RunScript("/bin/sh", "-c", "/etc/init.d/lighttpd", "restart"))
+			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd restart"))
 		}
 
 	},
@@ -57,7 +57,7 @@ var editServerCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		file, err := cmd.PersistentFlags().GetString("conf")
 		editor, err := cmd.PersistentFlags().GetString("editor")
-		eCmd := exec.Command(editor, file)
+		eCmd := exec.Command("sudo " + editor, file)
 		eCmd.Stdin = os.Stdin
 		eCmd.Stdout = os.Stdout
 		err = eCmd.Run()
