@@ -57,7 +57,7 @@ var editServerCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		file, err := cmd.PersistentFlags().GetString("conf")
 		editor, err := cmd.PersistentFlags().GetString("editor")
-		eCmd := exec.Command("sudo " + editor, file)
+		eCmd := exec.Command("/bin/sh", "-c", "sudo " + editor + " " + file)
 		eCmd.Stdin = os.Stdin
 		eCmd.Stdout = os.Stdout
 		err = eCmd.Run()
