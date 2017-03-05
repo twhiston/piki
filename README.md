@@ -14,3 +14,4 @@ Commands for pi control
 Commands to interact with the api
 add networking features
 single command for interactive first time setup
+startup screen config
