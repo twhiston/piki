@@ -33,8 +33,7 @@ var apiCmd = &cobra.Command{
 
 func init() {
 	dashCmd.AddCommand(apiCmd)
-
-	apiCmd.PersistentFlags().String("base", "http://localhost/", "Set the base path, MUST end with /")
+	apiCmd.PersistentFlags().String("base", "http://localhost/index.php/", "Set the base path, MUST end with /")
 
 }
 
