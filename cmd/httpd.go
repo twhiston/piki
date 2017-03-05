@@ -26,7 +26,7 @@ import (
 var httpdCmd = &cobra.Command{
 	Use:   "httpd",
 	Short: "Turn on or off httpd checking when starting up OS",
-	Long: `Set flag --disabled to turn off the checking and always allow the browser to start`,
+	Long:  `Set flag --disabled to turn off the checking and always allow the browser to start`,
 	Run: func(cmd *cobra.Command, args []string) {
 		httpdFile, err := cmd.PersistentFlags().GetString("file")
 
@@ -35,11 +35,10 @@ var httpdCmd = &cobra.Command{
 			f.Close()
 		}
 
-
 		disabled, err := cmd.PersistentFlags().GetBool("disabled")
 
 		var httpdFileString = ""
-		if(disabled){
+		if disabled {
 			httpdFileString = "disabled"
 		} else {
 			httpdFileString = "enabled"
@@ -50,7 +49,7 @@ var httpdCmd = &cobra.Command{
 			panic(err)
 		}
 
-		fmt.Println("Set check_for_httpd to " + httpdFileString )
+		fmt.Println("Set check_for_httpd to " + httpdFileString)
 
 	},
 }

@@ -15,35 +15,35 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/twhiston/piki/helpers"
-	"fmt"
-	"os/exec"
 	"os"
+	"os/exec"
 )
 
 // serverCmd represents the server command
 var serverCmd = &cobra.Command{
 	Use:   "server",
 	Short: "stop start or restart the server",
-	Long: `simple alias for /etc/init.d/lighttp`,
+	Long:  `simple alias for /etc/init.d/lighttp`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		stop, _ := cmd.PersistentFlags().GetBool("stop")
 		start, _ := cmd.PersistentFlags().GetBool("start")
 		restart, _ := cmd.PersistentFlags().GetBool("restart")
 
-		if(!stop && !start && !restart){
+		if !stop && !start && !restart {
 			fmt.Println("You must specify a --stop --start or --restart flag")
 		}
 
-		if(stop){
+		if stop {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "/etc/init.d/lighttpd", "stop"))
 		}
-		if(start){
+		if start {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "/etc/init.d/lighttpd", "start"))
 		}
-		if(restart){
+		if restart {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "/etc/init.d/lighttpd", "restart"))
 		}
 
@@ -53,7 +53,7 @@ var serverCmd = &cobra.Command{
 var editServerCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "edit the server config",
-	Long: `simple alias for sudo vi /etc/lighttpd/lighttpd.conf`,
+	Long:  `simple alias for sudo vi /etc/lighttpd/lighttpd.conf`,
 	Run: func(cmd *cobra.Command, args []string) {
 		file, err := cmd.PersistentFlags().GetString("conf")
 		editor, err := cmd.PersistentFlags().GetString("editor")
@@ -61,7 +61,7 @@ var editServerCmd = &cobra.Command{
 		eCmd.Stdin = os.Stdin
 		eCmd.Stdout = os.Stdout
 		err = eCmd.Run()
-		if(err != nil){
+		if err != nil {
 			fmt.Println(err)
 		}
 	},
@@ -75,9 +75,7 @@ func init() {
 	serverCmd.PersistentFlags().Bool("start", false, "A help for foo")
 	serverCmd.PersistentFlags().Bool("stop", false, "A help for foo")
 
-
 	editServerCmd.PersistentFlags().String("conf", "/etc/lighttpd/lighttpd.conf", "Path and filename of lighttpd conf file")
 	editServerCmd.PersistentFlags().String("editor", "vi", "Name of editor to use")
-
 
 }

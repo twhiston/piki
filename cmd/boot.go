@@ -18,8 +18,8 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	"io/ioutil"
 	"github.com/twhiston/piki/helpers"
+	"io/ioutil"
 	"regexp"
 )
 
@@ -27,7 +27,7 @@ import (
 var bootCmd = &cobra.Command{
 	Use:   "boot",
 	Short: "A brief description of your command",
-	Long: `Set if you want to boot to the app or rescue mode easily with this tool. Just pass in the type of boot you want`,
+	Long:  `Set if you want to boot to the app or rescue mode easily with this tool. Just pass in the type of boot you want`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// read the whole file at once
 		cmdLineFile, err := cmd.PersistentFlags().GetString("file")
@@ -43,11 +43,11 @@ var bootCmd = &cobra.Command{
 			return
 		}
 
-		if(bootType == "app"){
+		if bootType == "app" {
 			//Regex must match rootwait 1
 			re := regexp.MustCompile("(?m)rootwait 1")
 			cmdLineFileString = re.ReplaceAllString(cmdLineFileString, "rootwait")
-		} else if(bootType == "recovery"){
+		} else if bootType == "recovery" {
 
 			//Regex must match rootwait but NOT rootwait 1
 			re := regexp.MustCompile("(?m)rootwait")
@@ -74,6 +74,3 @@ func init() {
 	bootCmd.PersistentFlags().String("type", "app", "The type of boot. Accepted are app & recovery")
 
 }
-
-
-

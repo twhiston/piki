@@ -15,53 +15,51 @@
 package cmd
 
 import (
-
-	"github.com/spf13/cobra"
 	"fmt"
+	"github.com/spf13/cobra"
 )
 
 // settingsCmd represents the settings command
 var settingsCmd = &cobra.Command{
 	Use:   "settings",
 	Short: "Interact with the dashboard settings via the API",
-	Long: `Uses the API to interact with the dashboard app`,
-
+	Long:  `Uses the API to interact with the dashboard app`,
 }
 
 // getCmd represents the get command
 var getCmd = &cobra.Command{
 	Use:   "get",
 	Short: "Get the settings",
-	Long: `Get the api settings, or optionally a specific setting`,
+	Long:  `Get the api settings, or optionally a specific setting`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		base := validateBasePath(cmd)
-		RenderApiGetCall(base,"api/settings")
+		RenderApiGetCall(base, "api/settings")
 	},
 }
 
 var setCmd = &cobra.Command{
 	Use:   "set",
 	Short: "Set a settings value",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		base := validateBasePath(cmd)
 
 		setting, err := cmd.Parent().PersistentFlags().GetString("name")
-		if(setting == ""){
+		if setting == "" {
 			fmt.Println("--setting cannot be null")
 		}
-		if(err != nil){
+		if err != nil {
 			panic(err)
 		}
 
 		value, err := cmd.PersistentFlags().GetString("value")
 
 		//Yeah that sucks to build some json this way but that's whats happening for now
-		json := "{\""+setting+"\": \""+value+"\"}"
+		json := "{\"" + setting + "\": \"" + value + "\"}"
 		fmt.Println(json)
-		RenderApiPostCall(base,"api/settings",json)
+		RenderApiPostCall(base, "api/settings", json)
 	},
 }
 
@@ -70,6 +68,6 @@ func init() {
 	settingsCmd.AddCommand(setCmd)
 	settingsCmd.AddCommand(getCmd)
 
-	settingsCmd.PersistentFlags().String("name","","the name of the setting")
-	setCmd.PersistentFlags().String("value","","the value to set")
+	settingsCmd.PersistentFlags().String("name", "", "the name of the setting")
+	setCmd.PersistentFlags().String("value", "", "the value to set")
 }

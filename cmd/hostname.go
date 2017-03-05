@@ -15,22 +15,19 @@
 package cmd
 
 import (
-
-
 	"github.com/spf13/cobra"
 
-
-	"io/ioutil"
-	"github.com/twhiston/piki/helpers"
-	"regexp"
 	"fmt"
+	"github.com/twhiston/piki/helpers"
+	"io/ioutil"
+	"regexp"
 )
 
 // hostnameCmd represents the hostname command
 var hostnameCmd = &cobra.Command{
 	Use:   "hostname",
 	Short: "Set your Piki machine hostname",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		currentHost := helpers.GetFileAsString("/etc/hostname")
@@ -52,9 +49,8 @@ var hostnameCmd = &cobra.Command{
 			panic(err)
 		}
 
-		fmt.Println("Set hostname to "+ hostname)
+		fmt.Println("Set hostname to " + hostname)
 		fmt.Println("You should run piki reboot")
-
 
 	},
 }

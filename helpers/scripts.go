@@ -1,14 +1,14 @@
 package helpers
 
 import (
-	"os/exec"
 	"bytes"
 	"fmt"
 	"os"
+	"os/exec"
 )
 
 func RunScript(name string, args ...string) string {
-	return RunScriptInDirectory(name,"",args...)
+	return RunScriptInDirectory(name, "", args...)
 }
 
 func RunScriptInDirectory(name string, dir string, args ...string) string {
@@ -17,7 +17,7 @@ func RunScriptInDirectory(name string, dir string, args ...string) string {
 	var out, stderr bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
-	if(dir != ""){
+	if dir != "" {
 		cmd.Dir = dir
 	}
 	err := cmd.Run()

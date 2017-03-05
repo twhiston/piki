@@ -34,19 +34,19 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		dir, _ := cmd.Parent().PersistentFlags().GetString("dir")
 		hard, _ := cmd.PersistentFlags().GetBool("hard")
-		if(hard){
-			fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c",  "git fetch" ))
+		if hard {
+			fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c", "git fetch"))
 			branch, _ := cmd.PersistentFlags().GetString("branch")
-			fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c",  "git reset --hard " + branch))
+			fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c", "git reset --hard "+branch))
 		}
-		fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c",  "git pull"))
+		fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c", "git pull"))
 	},
 }
 
 func init() {
 	dashCmd.AddCommand(updateCmd)
 
-	updateCmd.PersistentFlags().Bool("hard",false,"If hard is set this will reset the repo before pulling the newest version to ensure all changes are gone")
-	updateCmd.PersistentFlags().String("branch","origin/master","The branch to hard reset to")
+	updateCmd.PersistentFlags().Bool("hard", false, "If hard is set this will reset the repo before pulling the newest version to ensure all changes are gone")
+	updateCmd.PersistentFlags().String("branch", "origin/master", "The branch to hard reset to")
 
 }

@@ -1,0 +1,5 @@
+## PIKI AUTO GENERATED ENTRY - DO NOT EDIT MANUALLY ##
+		
+iface wlan0-fullpageos inet manual
+    wpa-ssid "banana-town"
+    wpa-psk "1234fuckyou5678"

@@ -15,13 +15,12 @@
 package cmd
 
 import (
-
-	"github.com/spf13/cobra"
-	"net/http"
 	"fmt"
+	"github.com/spf13/cobra"
 	"io"
-	"os"
 	"log"
+	"net/http"
+	"os"
 	"strings"
 )
 
@@ -29,7 +28,7 @@ import (
 var apiCmd = &cobra.Command{
 	Use:   "api",
 	Short: "Interact with the defaut dashboard app api",
-	Long: `Only works with the default app api, so if you use something else on your piki you should ignore this command`,
+	Long:  `Only works with the default app api, so if you use something else on your piki you should ignore this command`,
 }
 
 func init() {
@@ -39,19 +38,18 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	 apiCmd.PersistentFlags().String("base", "http://localhost/", "Set the base path, MUST end with /")
+	apiCmd.PersistentFlags().String("base", "http://localhost/", "Set the base path, MUST end with /")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// apiCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
 
 }
 
 func validateBasePath(cmd *cobra.Command) string {
 	base, err := cmd.Flags().GetString("base")
 
-	if(err != nil){
+	if err != nil {
 		fmt.Println("no base path is available")
 		os.Exit(1)
 	}
@@ -59,7 +57,7 @@ func validateBasePath(cmd *cobra.Command) string {
 	return base
 }
 
-func RenderApiGetCall(base string, path string){
+func RenderApiGetCall(base string, path string) {
 
 	requestAddress := base + path
 	resp, err := http.Get(requestAddress)
@@ -75,13 +73,12 @@ func RenderApiGetCall(base string, path string){
 
 }
 
-func RenderApiPostCall(base string, path string, payload string){
-
+func RenderApiPostCall(base string, path string, payload string) {
 
 	body := strings.NewReader(payload)
 
 	requestAddress := base + path
-	resp, err := http.Post(requestAddress,"application/json",body)
+	resp, err := http.Post(requestAddress, "application/json", body)
 	fmt.Println("POST: " + requestAddress)
 	if err != nil {
 		log.Fatal(err)

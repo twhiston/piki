@@ -15,7 +15,6 @@
 package cmd
 
 import (
-
 	"github.com/spf13/cobra"
 )
 
@@ -23,21 +22,12 @@ import (
 var dashCmd = &cobra.Command{
 	Use:   "dash",
 	Short: "commands to control the dashboard are below this namespace",
-	Long: ``,
+	Long:  ``,
 }
 
 func init() {
 	RootCmd.AddCommand(dashCmd)
 
 	dashCmd.PersistentFlags().String("dir", "/var/www/html/FullPageDashboard", "Directory of the dasboard")
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// dashCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// dashCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 }
