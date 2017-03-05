@@ -34,6 +34,7 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		dir, _ := cmd.Parent().PersistentFlags().GetString("dir")
 		hard, _ := cmd.PersistentFlags().GetBool("hard")
+		fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c", "sudo chown -R pi .git"))
 		if hard {
 			fmt.Print(helpers.RunScriptInDirectory("/bin/sh", dir, "-c", "git fetch"))
 			branch, _ := cmd.PersistentFlags().GetString("branch")

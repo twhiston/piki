@@ -7,6 +7,7 @@ On server go app written of Piki Raspberry distribution to make managing your ki
 
 Add checking that you are on the OS that you should be to execute some commands
 
+replace on server refresh scripts with go tool scripts
 logs (httpd, php etc....)
 kms graphics setup
 Commands for pi control
