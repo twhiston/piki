@@ -32,25 +32,25 @@ var serverCmd = &cobra.Command{
 var ctrlServerCmd = &cobra.Command{
 	Use:   "ctrl",
 	Short: "stop start or restart the server",
-	Long:  `simple alias for /etc/init.d/lighttp.
+	Long: `simple alias for /etc/init.d/lighttp.
 Arguments could be
 	start
 	stop
 	restart`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		if(len(args) == 0){
+		if len(args) == 0 {
 			fmt.Println("argument must be start / stop / restart")
 			return
 		}
 
 		command := args[0]
 
-		if (command == "stop") {
+		if command == "stop" {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd stop"))
-		} else if (command == "start") {
+		} else if command == "start" {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd start"))
-		} else if (command == "restart") {
+		} else if command == "restart" {
 			fmt.Print(helpers.RunScript("/bin/sh", "-c", "sudo /etc/init.d/lighttpd restart"))
 		} else {
 			fmt.Println("argument must be start / stop / restart")
@@ -66,7 +66,7 @@ var editServerCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		file, err := cmd.PersistentFlags().GetString("conf")
 		editor, err := cmd.PersistentFlags().GetString("editor")
-		eCmd := exec.Command("/bin/sh", "-c", "sudo " + editor + " " + file)
+		eCmd := exec.Command("/bin/sh", "-c", "sudo "+editor+" "+file)
 		eCmd.Stdin = os.Stdin
 		eCmd.Stdout = os.Stdout
 		err = eCmd.Run()

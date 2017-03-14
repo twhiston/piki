@@ -25,7 +25,7 @@ import (
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "update the code of the dashboard via git",
-	Long: `does a git pull for the api (or defined) folder, does a hard reset on flag`,
+	Long:  `does a git pull for the api (or defined) folder, does a hard reset on flag`,
 	Run: func(cmd *cobra.Command, args []string) {
 		dir, _ := cmd.Parent().PersistentFlags().GetString("dir")
 		hard, _ := cmd.PersistentFlags().GetBool("hard")

@@ -25,35 +25,35 @@ import (
 var logsCmd = &cobra.Command{
 	Use:   "logs",
 	Short: "Helper command to quickly bring up useful logs",
-	Long: ``,
+	Long:  ``,
 }
 
 var httpdLogsCmd = &cobra.Command{
 	Use:   "httpd",
 	Short: "view httpd log",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		viewLog(cmd,"/var/log/lighttpd/lighttpd.log")
+		viewLog(cmd, "/var/log/lighttpd/lighttpd.log")
 	},
 }
 
 var phpLogsCmd = &cobra.Command{
 	Use:   "php",
 	Short: "view httpd log",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("currently php issues are logged to stdout. This will change")
 
 	},
 }
 
-func viewLog(cmd *cobra.Command, location string){
+func viewLog(cmd *cobra.Command, location string) {
 
 	tail, _ := cmd.Parent().PersistentFlags().GetBool("tail")
-	if(tail){
-		helpers.RunScript("/bin/sh", "-c", "tail -F "+ location)
+	if tail {
+		helpers.RunScript("/bin/sh", "-c", "tail -F "+location)
 	} else {
-		helpers.RunScript("/bin/sh", "-c", "cat "+ location)
+		helpers.RunScript("/bin/sh", "-c", "cat "+location)
 	}
 
 }
@@ -65,6 +65,5 @@ func init() {
 
 	logsCmd.AddCommand(httpdLogsCmd)
 	logsCmd.AddCommand(phpLogsCmd)
-
 
 }

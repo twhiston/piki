@@ -15,19 +15,18 @@
 package cmd
 
 import (
-
 	"github.com/spf13/cobra"
 	"github.com/twhiston/piki/helpers"
 )
 
 // shutdownCmd represents the shutdown command
 var shutdownCmd = &cobra.Command{
-	Use:   "shutdown",
-	Short: "Shutdown the piki now",
+	Use:     "shutdown",
+	Short:   "Shutdown the piki now",
 	Aliases: []string{"stop", "halt"},
-	Long: ``,
+	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		helpers.RunScript("/bin/sh", "-c", "sudo /sbin/shutdown" )
+		helpers.RunScript("/bin/sh", "-c", "sudo /sbin/shutdown")
 	},
 }
 

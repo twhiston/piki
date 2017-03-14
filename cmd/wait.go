@@ -54,7 +54,6 @@ var waitCmd = &cobra.Command{
 	},
 }
 
-
 func init() {
 	serverCmd.AddCommand(waitCmd)
 	waitCmd.PersistentFlags().String("file", "/boot/check_for_httpd", "Path (including filename) of the check_for_httpd file to alter")

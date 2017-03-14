@@ -15,9 +15,9 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/twhiston/piki/helpers"
-	"fmt"
 )
 
 // dashCmd represents the dash command
@@ -30,7 +30,7 @@ var dashCmd = &cobra.Command{
 var refreshCmd = &cobra.Command{
 	Use:   "refresh",
 	Short: "refresh the browser screen",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		//export DISPLAY=:0
 		//WID=$(xdotool search --onlyvisible --class chromium|head -1)
